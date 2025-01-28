@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Phone, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +18,8 @@ export const Navbar = () => {
     { name: 'Admin Dashboard', path: '/admin' },
     { name: 'Resident Dashboard', path: '/resident' },
     { name: 'Tourist Dashboard', path: '/tourist' },
+    { name: 'Emergency Contacts', path: '/emergency', icon: Phone },
+    { name: 'Profile', path: '/profile', icon: User },
   ];
 
   return (
@@ -45,13 +41,14 @@ export const Navbar = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-1 ${
                     location.pathname === item.path
                       ? 'bg-primary text-primary-foreground'
                       : 'hover:bg-accent hover:text-accent-foreground'
                   }`}
                 >
-                  {item.name}
+                  {item.icon && <item.icon className="h-4 w-4" />}
+                  <span>{item.name}</span>
                 </Link>
               ))}
               <Button
@@ -97,14 +94,15 @@ export const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium ${
                   location.pathname === item.path
                     ? 'bg-primary text-primary-foreground'
                     : 'hover:bg-accent hover:text-accent-foreground'
                 }`}
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {item.icon && <item.icon className="h-4 w-4" />}
+                <span>{item.name}</span>
               </Link>
             ))}
           </div>

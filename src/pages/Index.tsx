@@ -30,6 +30,7 @@ const Index = () => {
             </h1>
             <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
               Experience the future of urban living with our integrated smart city solutions.
+              Discover a city that's connected, sustainable, and designed for everyone.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/admin">
@@ -73,6 +74,38 @@ const Index = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* City Introduction */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="glass p-8 rounded-lg max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl font-bold mb-6 text-center">About Our City</h2>
+            <p className="text-lg mb-6">
+              Our smart city is a pioneer in sustainable urban development, combining cutting-edge 
+              technology with eco-friendly initiatives to create a better living environment for all 
+              residents and visitors.
+            </p>
+            <p className="text-lg mb-6">
+              With over 300 green spaces, 1,200 smart buildings, and an integrated public transport 
+              system, we're building a future where technology enhances daily life while preserving 
+              our environment.
+            </p>
+            <div className="text-center">
+              <Link to="/emergency">
+                <Button variant="outline" size="lg">
+                  View Emergency Services
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

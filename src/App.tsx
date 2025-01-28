@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import AdminDashboard from "./pages/AdminDashboard";
 import ResidentDashboard from "./pages/ResidentDashboard";
 import TouristDashboard from "./pages/TouristDashboard";
+import EmergencyContacts from "./pages/EmergencyContacts";
+import UserProfile from "./pages/UserProfile";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,8 @@ const App = () => (
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/resident" element={<ResidentDashboard />} />
             <Route path="/tourist" element={<TouristDashboard />} />
+            <Route path="/emergency" element={<EmergencyContacts />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
