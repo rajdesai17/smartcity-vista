@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Phone, Hospital, Police, Flame } from "lucide-react";
+import { Phone, Building2, Shield, FireExtinguisher } from "lucide-react";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
 
 const emergencyServices = [
   {
     id: 1,
     type: "Police Stations",
-    icon: Police,
+    icon: Shield,
     contacts: [
       { name: "Central Police Station", phone: "100", address: "Main Street" },
       { name: "City Police HQ", phone: "022-2222-1111", address: "Police Road" },
@@ -15,7 +15,7 @@ const emergencyServices = [
   {
     id: 2,
     type: "Hospitals",
-    icon: Hospital,
+    icon: Building2,
     contacts: [
       { name: "City General Hospital", phone: "102", address: "Hospital Road" },
       { name: "Emergency Care Center", phone: "022-3333-2222", address: "Health Avenue" },
@@ -24,7 +24,7 @@ const emergencyServices = [
   {
     id: 3,
     type: "Fire Services",
-    icon: Flame,
+    icon: FireExtinguisher,
     contacts: [
       { name: "Central Fire Station", phone: "101", address: "Fire Brigade Lane" },
       { name: "City Fire Control", phone: "022-4444-3333", address: "Emergency Road" },
