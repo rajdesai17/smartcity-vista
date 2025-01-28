@@ -1,26 +1,38 @@
-# Welcome to your Lovable project
+# SmartCity Dashboard
 
-## Project info
+A responsive and interactive **SmartCity Dashboard** to display real-time data for city administrators, residents, and tourists. This web application integrates multiple city management features such as traffic updates, weather conditions, air quality, event management, emergency contacts, and more.
 
-**URL**: https://lovable.dev/projects/e6fa235c-bc3e-4f21-9b56-c8da292462d2
+---
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Real-time Data Visualization**: Displays live data such as traffic updates, weather, air quality, and energy consumption.
+- **User Personalization**: Provides different dashboards for **Administrator**, **Resident**, and **Tourist** personas.
+- **Interactive Maps**: Uses **React Leaflet** and **OpenStreetMap** to display parking availability, public transport routes, and emergency contact locations.
+- **Event Management**: Calendar view with RSVP and bookmark functionality for upcoming events.
+- **Emergency Contact Section**: List of emergency contacts with quick access.
+- **User Profile**: Displays user name and eco-friendly activity badges.
+- **Gamification**: Rewards and badges for eco-friendly activities like using public transport.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e6fa235c-bc3e-4f21-9b56-c8da292462d2) and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Frontend**: React, Material UI, Acerenity UI
+- **Mapping**: React Leaflet, OpenStreetMap
+- **State Management**: React Context (for persona-based state)
+- **Animations**: Material UI or Acerenity UI
+- **CSS**: Responsive design with modern styling and theming
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/smartcity-dashboard.git
+   cd smartcity-dashboard
 
-Follow these steps:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
