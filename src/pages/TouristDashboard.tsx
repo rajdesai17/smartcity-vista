@@ -3,6 +3,7 @@ import { DashboardCard } from "@/components/dashboard/DashboardCard";
 import { WeatherWidget } from "@/components/dashboard/WeatherWidget";
 import { AlertsWidget } from "@/components/dashboard/AlertsWidget";
 import { Landmark, Utensils, Music, MapPin, Star } from "lucide-react";
+import { CityMap } from '@/components/map/CityMap';
 
 const attractions = [
   {
@@ -48,6 +49,24 @@ const events = [
     icon: Music,
     image: "concert.jpg"
   },
+];
+
+const touristPoints = [
+  {
+    position: [51.505, -0.09] as [number, number],
+    name: "Historical Museum",
+    description: "City's main museum"
+  },
+  {
+    position: [51.51, -0.1] as [number, number],
+    name: "Central Park",
+    description: "Large urban park"
+  },
+  {
+    position: [51.498, -0.085] as [number, number],
+    name: "Art Gallery",
+    description: "Contemporary art exhibitions"
+  }
 ];
 
 const TouristDashboard = () => {
@@ -129,7 +148,7 @@ const TouristDashboard = () => {
 
         {/* Transport Info */}
         <DashboardCard title="Getting Around" className="col-span-full">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300"
@@ -151,6 +170,15 @@ const TouristDashboard = () => {
               <h4 className="font-semibold">Walking Tours</h4>
               <p className="text-sm text-muted-foreground">Discover the city on foot</p>
             </motion.div>
+          </div>
+          
+          {/* Add the map */}
+          <div className="mt-4">
+            <CityMap 
+              points={touristPoints}
+              center={[51.505, -0.09]}
+              zoom={14}
+            />
           </div>
         </DashboardCard>
       </div>

@@ -3,6 +3,7 @@ import { DashboardCard } from "@/components/dashboard/DashboardCard";
 import { WeatherWidget } from "@/components/dashboard/WeatherWidget";
 import { AlertsWidget } from "@/components/dashboard/AlertsWidget";
 import { Calendar, MapPin, Clock, Users } from "lucide-react";
+import { CityMap } from '@/components/map/CityMap';
 
 const events = [
   { 
@@ -26,6 +27,24 @@ const events = [
     location: "Cultural Center",
     attendees: 75
   },
+];
+
+const communityPoints = [
+  {
+    position: [51.505, -0.09] as [number, number],
+    name: "Community Center",
+    description: "Main community gathering space"
+  },
+  {
+    position: [51.51, -0.1] as [number, number],
+    name: "Local Market",
+    description: "Weekly farmers market"
+  },
+  {
+    position: [51.498, -0.085] as [number, number],
+    name: "Cultural Center",
+    description: "Art exhibitions and events"
+  }
 ];
 
 const ResidentDashboard = () => {
@@ -98,6 +117,16 @@ const ResidentDashboard = () => {
             </motion.div>
           </div>
         </DashboardCard>
+      </div>
+
+      {/* Add the map at the bottom */}
+      <div className="mt-6">
+        <CityMap 
+          points={communityPoints}
+          center={[51.505, -0.09]}
+          zoom={14}
+          className="col-span-full"
+        />
       </div>
     </div>
   );
