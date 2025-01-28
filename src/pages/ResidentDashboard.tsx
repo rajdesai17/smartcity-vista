@@ -6,6 +6,9 @@ import { Calendar, MapPin, Clock, Users } from "lucide-react";
 import { CityMap } from '@/components/map/CityMap';
 import { EventDialog } from '@/components/events/EventDialog';
 import { useState } from 'react';
+import { EventCalendar } from "@/components/calendar/EventCalendar";
+import { TransportDialog } from "@/components/services/TransportDialog";
+import { ParkingDialog } from "@/components/services/ParkingDialog";
 
 const events = [
   { 
@@ -57,6 +60,8 @@ const communityPoints = [
 
 const ResidentDashboard = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isTransportDialogOpen, setIsTransportDialogOpen] = useState(false);
+  const [isParkingDialogOpen, setIsParkingDialogOpen] = useState(false);
 
   return (
     <div className="container mx-auto px-4 py-8 pt-20"> {/* Added pt-20 */}
@@ -117,12 +122,16 @@ const ResidentDashboard = () => {
         {/* Alerts Widget */}
         <AlertsWidget />
 
-        {/* Local Services */}
+        {/* Add Calendar Widget */}
+        <EventCalendar events={events} onSelectEvent={setSelectedEvent} />
+
+        {/* Update Local Services section */}
         <DashboardCard title="Local Services" className="col-span-full md:col-span-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300"
+              onClick={() => setIsParkingDialogOpen(true)}
             >
               <h4 className="font-semibold">Parking Availability</h4>
               <p className="text-sm text-muted-foreground">Check nearby parking spots</p>
@@ -130,12 +139,23 @@ const ResidentDashboard = () => {
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300"
+              onClick={() => setIsTransportDialogOpen(true)}
             >
               <h4 className="font-semibold">Public Transport</h4>
               <p className="text-sm text-muted-foreground">View routes and schedules</p>
             </motion.div>
           </div>
         </DashboardCard>
+
+        {/* Add Dialogs */}
+        <TransportDialog 
+          isOpen={isTransportDialogOpen} 
+          onClose={() => setIsTransportDialogOpen(false)} 
+        />
+        <ParkingDialog 
+          isOpen={isParkingDialogOpen} 
+          onClose={() => setIsParkingDialogOpen(false)} 
+        />
       </div>
 
       {/* Add the map at the bottom */}

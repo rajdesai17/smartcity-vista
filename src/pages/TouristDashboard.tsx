@@ -6,6 +6,8 @@ import { Landmark, Utensils, Music, MapPin, Star } from "lucide-react";
 import { CityMap } from '@/components/map/CityMap';
 import { EventDialog } from '@/components/events/EventDialog';
 import { useState } from 'react';
+import { AttractionDialog } from "@/components/tourist/AttractionDialog";
+import { TouristTransportDialog } from "@/components/tourist/TouristTransportDialog";
 
 const attractions = [
   {
@@ -14,7 +16,11 @@ const attractions = [
     category: "Culture",
     rating: 4.8,
     location: "Downtown",
-    image: "museum.jpg"
+    image: "museum.jpg",
+    description: "A world-class museum featuring extensive collections of artifacts, art, and historical exhibits. Interactive displays and guided tours available.",
+    openingHours: "9:00 AM - 6:00 PM",
+    website: "https://museum.example.com",
+    phone: "+1 234 567 8900"
   },
   {
     id: 2,
@@ -77,6 +83,8 @@ const touristPoints = [
 
 const TouristDashboard = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedAttraction, setSelectedAttraction] = useState(null);
+  const [isTransportDialogOpen, setIsTransportDialogOpen] = useState(false);
 
   return (
     <div className="container mx-auto px-4 py-8 pt-20"> {/* Added pt-20 */}
@@ -101,7 +109,8 @@ const TouristDashboard = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="glass p-4 rounded-lg flex items-center justify-between hover:shadow-lg transition-all duration-300"
+                className="glass p-4 rounded-lg flex items-center justify-between hover:shadow-lg transition-all duration-300 cursor-pointer"
+                onClick={() => setSelectedAttraction(attraction)}
               >
                 <div className="flex items-center space-x-4">
                   <Landmark className="h-6 w-6 text-primary animate-float-slow" />
@@ -169,9 +178,10 @@ const TouristDashboard = () => {
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300"
+              onClick={() => setIsTransportDialogOpen(true)}
             >
-              <h4 className="font-semibold">Public Transport</h4>
-              <p className="text-sm text-muted-foreground">View routes and schedules</p>
+              <h4 className="font-semibold">Transport Options</h4>
+              <p className="text-sm text-muted-foreground">View all ways to explore the city</p>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.02 }}
@@ -199,6 +209,20 @@ const TouristDashboard = () => {
           </div>
         </DashboardCard>
       </div>
+
+      {/* Add Dialogs */}
+      {selectedAttraction && (
+        <AttractionDialog
+          attraction={selectedAttraction}
+          isOpen={!!selectedAttraction}
+          onClose={() => setSelectedAttraction(null)}
+        />
+      )}
+      
+      <TouristTransportDialog
+        isOpen={isTransportDialogOpen}
+        onClose={() => setIsTransportDialogOpen(false)}
+      />
     </div>
   );
 };
