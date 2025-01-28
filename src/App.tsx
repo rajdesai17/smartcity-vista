@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AdminDashboard from "./pages/AdminDashboard";
+import ResidentDashboard from "./pages/ResidentDashboard";
+import TouristDashboard from "./pages/TouristDashboard";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +22,9 @@ const App = () => (
           <Navbar />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/resident" element={<ResidentDashboard />} />
+            <Route path="/tourist" element={<TouristDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
