@@ -40,9 +40,12 @@ export const AttractionDialog = ({ isOpen, onClose, attraction }: AttractionDial
             <div className="space-y-4">
               <div className="relative h-48 w-full overflow-hidden rounded-lg">
                 <img
-                  src={`/images/${attraction.image}`}
+                  src={attraction.image}
                   alt={attraction.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1594322436404-5a0526db4d13?q=80&w=800";
+                  }}
                 />
               </div>
               

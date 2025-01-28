@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Bus, Bike, Walking } from "lucide-react";
+import { Bus, Bike, Footprints } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const publicTransport = [
   { route: "Tourist Loop", frequency: "Every 15 mins", stops: ["Museum", "City Center", "Beach", "Shopping Mall"], price: "$5/day" },
@@ -52,7 +53,7 @@ export const TouristTransportDialog = ({ isOpen, onClose }: TouristTransportDial
               <Bike className="h-4 w-4" /> Bike
             </TabsTrigger>
             <TabsTrigger value="walking" className="flex items-center gap-2">
-              <Walking className="h-4 w-4" /> Walking
+              <Footprints className="h-4 w-4" /> Walking
             </TabsTrigger>
           </TabsList>
 
