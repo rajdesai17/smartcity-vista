@@ -24,7 +24,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
 const AdminDashboard = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pt-20 pb-8"> {/* Added pt-20 for top padding */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
