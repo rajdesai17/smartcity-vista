@@ -4,6 +4,8 @@ import { WeatherWidget } from "@/components/dashboard/WeatherWidget";
 import { AlertsWidget } from "@/components/dashboard/AlertsWidget";
 import { Calendar, MapPin, Clock, Users } from "lucide-react";
 import { CityMap } from '@/components/map/CityMap';
+import { EventDialog } from '@/components/events/EventDialog';
+import { useState } from 'react';
 
 const events = [
   { 
@@ -11,21 +13,27 @@ const events = [
     title: "Community Meeting", 
     date: "2024-02-20", 
     location: "City Hall",
-    attendees: 45
+    attendees: 45,
+    description: "Monthly community meeting to discuss local developments and initiatives. Join us to share your ideas and concerns about our neighborhood.",
+    image: "community-meeting.jpg"
   },
   { 
     id: 2, 
     title: "Local Market", 
     date: "2024-02-22", 
     location: "Central Square",
-    attendees: 120
+    attendees: 120,
+    description: "Weekly farmers market featuring fresh local produce, artisanal goods, and community vendors. Support local businesses and enjoy fresh products.",
+    image: "local-market.jpg"
   },
   { 
     id: 3, 
     title: "Art Exhibition", 
     date: "2024-02-25", 
     location: "Cultural Center",
-    attendees: 75
+    attendees: 75,
+    description: "Showcasing works from local artists. Experience the vibrant art scene of our city with paintings, sculptures, and interactive installations.",
+    image: "art-exhibition.jpg"
   },
 ];
 
@@ -48,6 +56,8 @@ const communityPoints = [
 ];
 
 const ResidentDashboard = () => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   return (
     <div className="container mx-auto px-4 py-8 pt-20"> {/* Added pt-20 */}
       <motion.h1
@@ -71,7 +81,8 @@ const ResidentDashboard = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="glass p-4 rounded-lg flex items-center justify-between hover:shadow-lg transition-all duration-300"
+                className="glass p-4 rounded-lg flex items-center justify-between hover:shadow-lg transition-all duration-300 cursor-pointer"
+                onClick={() => setSelectedEvent(event)}
               >
                 <div className="flex items-center space-x-4">
                   <Calendar className="h-5 w-5 text-primary animate-float-slow" />
@@ -93,6 +104,14 @@ const ResidentDashboard = () => {
               </motion.div>
             ))}
           </div>
+
+          {selectedEvent && (
+            <EventDialog
+              event={selectedEvent}
+              isOpen={!!selectedEvent}
+              onClose={() => setSelectedEvent(null)}
+            />
+          )}
         </DashboardCard>
 
         {/* Alerts Widget */}
