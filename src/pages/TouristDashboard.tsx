@@ -4,6 +4,8 @@ import { WeatherWidget } from "@/components/dashboard/WeatherWidget";
 import { AlertsWidget } from "@/components/dashboard/AlertsWidget";
 import { Landmark, Utensils, Music, MapPin, Star } from "lucide-react";
 import { CityMap } from '@/components/map/CityMap';
+import { EventDialog } from '@/components/events/EventDialog';
+import { useState } from 'react';
 
 const attractions = [
   {
@@ -39,7 +41,9 @@ const events = [
     date: "This Weekend",
     location: "City Square",
     icon: Utensils,
-    image: "food-festival.jpg"
+    image: "food-festival.jpg",
+    description: "Experience the city's largest food festival featuring local and international cuisines. Join us for cooking demonstrations, food tastings, and live entertainment.",
+    attendees: 250
   },
   {
     id: 2,
@@ -47,7 +51,9 @@ const events = [
     date: "Next Friday",
     location: "City Arena",
     icon: Music,
-    image: "concert.jpg"
+    image: "concert.jpg",
+    description: "An evening of live music featuring top local bands and international artists. Don't miss this spectacular musical event!",
+    attendees: 500
   },
 ];
 
@@ -70,6 +76,8 @@ const touristPoints = [
 ];
 
 const TouristDashboard = () => {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   return (
     <div className="container mx-auto px-4 py-8 pt-20"> {/* Added pt-20 */}
       <motion.h1
@@ -127,7 +135,8 @@ const TouristDashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="glass p-4 rounded-lg hover:shadow-lg transition-all duration-300"
+                className="glass p-4 rounded-lg hover:shadow-lg transition-all duration-300 cursor-pointer"
+                onClick={() => setSelectedEvent(event)}
               >
                 <div className="flex items-center space-x-3">
                   <event.icon className="h-5 w-5 text-primary animate-float-slow" />
@@ -141,6 +150,14 @@ const TouristDashboard = () => {
               </motion.div>
             ))}
           </div>
+
+          {selectedEvent && (
+            <EventDialog
+              event={selectedEvent}
+              isOpen={!!selectedEvent}
+              onClose={() => setSelectedEvent(null)}
+            />
+          )}
         </DashboardCard>
 
         {/* Alerts Widget */}
