@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BarChart, LineChart, PieChart } from "recharts";
+import { LineChart, XAxis, YAxis, Tooltip, Line } from "recharts";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
 import { WeatherWidget } from "@/components/dashboard/WeatherWidget";
 import { AlertsWidget } from "@/components/dashboard/AlertsWidget";

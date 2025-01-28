@@ -1,6 +1,7 @@
 import { Bell } from "lucide-react";
 import { DashboardCard } from "./DashboardCard";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const alerts = [
   { id: 1, type: "emergency", message: "Heavy traffic on Main Street" },
