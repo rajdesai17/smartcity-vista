@@ -6,6 +6,8 @@ import { Landmark, Utensils, Music, MapPin, Star } from "lucide-react";
 import { CityMap } from '@/components/map/CityMap';
 import { EventDialog } from '@/components/events/EventDialog';
 import { useState } from 'react';
+import { AttractionDialog } from "@/components/tourist/AttractionDialog";
+import { TouristTransportDialog } from "@/components/tourist/TouristTransportDialog";
 
 const attractions = [
   {
@@ -14,7 +16,11 @@ const attractions = [
     category: "Culture",
     rating: 4.8,
     location: "Downtown",
-    image: "museum.jpg"
+    image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=800",
+    description: "A world-class museum featuring extensive collections of artifacts, art, and historical exhibits. Interactive displays and guided tours available.",
+    openingHours: "9:00 AM - 6:00 PM",
+    website: "https://museum.example.com",
+    phone: "+1 234 567 8900"
   },
   {
     id: 2,
@@ -22,7 +28,11 @@ const attractions = [
     category: "Nature",
     rating: 4.9,
     location: "City Center",
-    image: "park.jpg"
+    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800",
+    description: "A sprawling urban oasis featuring walking trails, gardens, and recreational areas. Perfect for picnics and outdoor activities.",
+    openingHours: "6:00 AM - 10:00 PM",
+    website: "https://centralpark.example.com",
+    phone: "+1 234 567 8901"
   },
   {
     id: 3,
@@ -30,8 +40,36 @@ const attractions = [
     category: "Culture",
     rating: 4.7,
     location: "Arts District",
-    image: "gallery.jpg"
+    image: "https://images.unsplash.com/photo-1594970484107-dbcd65b80825?q=80&w=800",
+    description: "Contemporary art exhibitions featuring local and international artists. Regular workshops and events.",
+    openingHours: "10:00 AM - 8:00 PM",
+    website: "https://artgallery.example.com",
+    phone: "+1 234 567 8902"
   },
+  {
+    id: 4,
+    title: "City Cathedral",
+    category: "Architecture",
+    rating: 4.9,
+    location: "Old Town",
+    image: "https://images.unsplash.com/photo-1548141087-a8f63535fad9?q=80&w=800",
+    description: "Historic cathedral with stunning Gothic architecture. Guided tours available.",
+    openingHours: "8:00 AM - 6:00 PM",
+    website: "https://cathedral.example.com",
+    phone: "+1 234 567 8903"
+  },
+  {
+    id: 5,
+    title: "Waterfront Market",
+    category: "Shopping",
+    rating: 4.6,
+    location: "Harbor District",
+    image: "https://images.unsplash.com/photo-1555341584-936637dbae11?q=80&w=800",
+    description: "Vibrant market featuring local produce, crafts, and street food. Weekend events and performances.",
+    openingHours: "7:00 AM - 9:00 PM",
+    website: "https://market.example.com",
+    phone: "+1 234 567 8904"
+  }
 ];
 
 const events = [
@@ -77,6 +115,8 @@ const touristPoints = [
 
 const TouristDashboard = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedAttraction, setSelectedAttraction] = useState(null);
+  const [isTransportDialogOpen, setIsTransportDialogOpen] = useState(false);
 
   return (
     <div className="container mx-auto px-4 py-8 pt-20"> {/* Added pt-20 */}
@@ -101,7 +141,8 @@ const TouristDashboard = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="glass p-4 rounded-lg flex items-center justify-between hover:shadow-lg transition-all duration-300"
+                className="glass p-4 rounded-lg flex items-center justify-between hover:shadow-lg transition-all duration-300 cursor-pointer"
+                onClick={() => setSelectedAttraction(attraction)}
               >
                 <div className="flex items-center space-x-4">
                   <Landmark className="h-6 w-6 text-primary animate-float-slow" />
@@ -169,23 +210,24 @@ const TouristDashboard = () => {
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300"
+              onClick={() => setIsTransportDialogOpen(true)}
             >
-              <h4 className="font-semibold">Public Transport</h4>
-              <p className="text-sm text-muted-foreground">View routes and schedules</p>
+              <h4 className="font-semibold">Transport Options</h4>
+              <p className="text-sm text-muted-foreground">View all ways to explore the city</p>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300"
             >
-              <h4 className="font-semibold">Bike Rentals</h4>
-              <p className="text-sm text-muted-foreground">Find nearby stations</p>
+              <h4 className="font-semibold"></h4>
+              <p className="text-sm text-muted-foreground"></p>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.02 }}
               className="glass p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-300"
             >
-              <h4 className="font-semibold">Walking Tours</h4>
-              <p className="text-sm text-muted-foreground">Discover the city on foot</p>
+              <h4 className="font-semibold"></h4>
+              <p className="text-sm text-muted-foreground"></p>
             </motion.div>
           </div>
           
@@ -199,6 +241,20 @@ const TouristDashboard = () => {
           </div>
         </DashboardCard>
       </div>
+
+      {/* Add Dialogs */}
+      {selectedAttraction && (
+        <AttractionDialog
+          attraction={selectedAttraction}
+          isOpen={!!selectedAttraction}
+          onClose={() => setSelectedAttraction(null)}
+        />
+      )}
+      
+      <TouristTransportDialog
+        isOpen={isTransportDialogOpen}
+        onClose={() => setIsTransportDialogOpen(false)}
+      />
     </div>
   );
 };

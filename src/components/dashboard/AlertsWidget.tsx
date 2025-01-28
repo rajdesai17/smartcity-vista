@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const alerts = [
   { id: 1, type: "emergency", message: "Heavy traffic on Main Street" },
   { id: 2, type: "warning", message: "Scheduled maintenance in Central Park" },
-  { id: 3, type: "info", message: "New event: City Festival this weekend" },
+  { id: 3, type: "info", message: "Road maintenance on Main Street" },
 ];
 
 export const AlertsWidget = () => {
